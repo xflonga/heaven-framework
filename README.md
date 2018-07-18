@@ -1,2 +1,3 @@
-ѧϰʹ��
-һ������spring-framework�Ļ�����
+学习使用
+
+一个类似spring-framework的基础库

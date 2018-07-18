@@ -1,0 +1,1 @@
+与配置相关，其功能类似spring的Environment
