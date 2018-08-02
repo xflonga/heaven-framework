@@ -83,6 +83,7 @@ public class YamlConfigParser implements IConfigFileParser {
 
     private void format2Map(Map<String, String> content, Collection<Object> source, StringBuilder preKey, String file)
             throws ConfigParserException {
+        boolean flag = false;
         for (Object o : source) {
             if (o instanceof Map) {
                 this.format2Map(content, (Map<String, Object>) o, preKey, file);
@@ -93,14 +94,17 @@ public class YamlConfigParser implements IConfigFileParser {
             }
 
             else {
+                flag = true;
                 break;
             }
         }
 
-        String key = this.existsKey(content, preKey.toString(), file);
-        StringBuilder value = new StringBuilder();
-        source.forEach(v -> value.append(',').append(v));
-        content.put(key, value.substring(1));
+        if (flag) {
+            String key = this.existsKey(content, preKey.toString(), file);
+            StringBuilder value = new StringBuilder();
+            source.forEach(v -> value.append(',').append(v));
+            content.put(key, value.substring(1));
+        }
     }
 
     private boolean supportYamlParser() {
