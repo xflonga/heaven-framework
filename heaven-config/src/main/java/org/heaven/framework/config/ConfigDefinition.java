@@ -12,7 +12,7 @@ import java.io.InputStream;
  */
 @Getter
 @Setter
-public class ConfigDefinition {
+public class ConfigDefinition implements AutoCloseable {
 
     /**
      * 文件名
@@ -33,6 +33,13 @@ public class ConfigDefinition {
      * 文件路径
      */
     private String path;
+
+    @Override
+    public void close() throws Exception {
+        if (this.content != null) {
+            this.content.close();
+        }
+    }
 
     /**
      * 配置文件类型
